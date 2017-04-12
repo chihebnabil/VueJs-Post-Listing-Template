@@ -13,10 +13,10 @@
     </div>
 
     <div class="container" id="app">
-        <div class="row post" v-for="post in posts">
-            <div class="col-md-4"><img src="#"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
+        <div class="row post" v-for="(post, index) in posts">
+            <div class="col-md-4"><img v-bind:src="post.image_url" class="post-img rounded"> </div>
+            <div class="col-md-4">{{post}}</div>
+            <div class="col-md-4"><img v-bind:src="getAuthor(post.author_id).avatar_url" class="author-img rounded-circle"> {{ getAuthor(post.author_id).name }}</div>
         </div>
     </div>
     <br>
@@ -41,7 +41,7 @@
                 authors: {}
             },
             mounted: function () {
-                // GET /someUrl
+                // GET /Posts
                 this.$http.get('http://maqe.github.io/json/posts.json').then(response => {
 
                     // get body data
@@ -50,11 +50,12 @@
                 }, response => {
                     // error callback
                 });
-
+                // GET /Authors
                 this.$http.get('http://maqe.github.io/json/authors.json').then(response => {
 
                     // get body data
                     this.authors = response.body;
+
 
                 }, response => {
                     // error callback
@@ -64,7 +65,13 @@
             },
             methods: {
                 init: function () {
-                    console.log(this.authors)
+
+                },
+                getAuthor: function (id) {
+                    data = this.authors.filter(function (item) {
+                        return item.id == id;
+                    });
+                    return data[0];
                 }
             }
         })
