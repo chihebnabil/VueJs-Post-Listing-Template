@@ -3,6 +3,7 @@
 <head></head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
 
 <body>
@@ -15,14 +16,17 @@
 
     <div class="container" id="app">
         <div class="row post" v-for="(post, index) in posts">
-            <div class="col-md-4 img-area"><img v-bind:src="post.image_url" class="post-img"> </div>
-            <div class="col-md-5 content-area">
+            <div class="col-md-3 img-area"><img v-bind:src="post.image_url" class="post-img"> </div>
+            <div class="col-md-7 content-area">
                 <h4 class="post-title">{{post.title}}</h4>
                 <p class="post-body">{{post.body}}</p>
+                <p><i class="fa fa-clock-o" aria-hidden="true"></i>
+ </p>
             </div>
-            <div class="col-md-3 author-area"><img v-bind:src="getAuthor(post.author_id).avatar_url" class="author-img rounded-circle">
+            <div class="col-md-2 author-area"><img v-bind:src="getAuthor(post.author_id).avatar_url" class="author-img rounded-circle">
                 <p class="author-name">{{ getAuthor(post.author_id).name }}</p>
-
+<p class="author-role">{{ getAuthor(post.author_id).role }}</p>
+<p class="author-place"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ getAuthor(post.author_id).place }}</p>
             </div>
         </div>
     </div>
@@ -40,52 +44,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                posts: {},
-                authors: {}
-            },
-            mounted: function () {
-                // GET /Posts
-                this.$http.get('http://maqe.github.io/json/posts.json').then(response => {
-
-                    // get body data
-                    this.posts = response.body;
-
-                }, response => {
-                    // error callback
-                });
-                // GET /Authors
-                this.$http.get('http://maqe.github.io/json/authors.json').then(response => {
-
-                    // get body data
-                    this.authors = response.body;
-
-
-                }, response => {
-                    // error callback
-                });
-
-
-            },
-            methods: {
-                init: function () {
-
-                },
-                getAuthor: function (id) {
-
-                    var data = this.authors.filter(function (item) {
-                        return item.id == id;
-                    });
-
-
-                    return data[0] || {};
-                }
-            }
-        })
-    </script>
+    <script src="js/app.js"> </script>
 
 </body>
 

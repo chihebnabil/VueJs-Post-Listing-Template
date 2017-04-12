@@ -15,7 +15,7 @@ li.page-item.active  a.page-link{
     background: red;
 }
 .post-img{
-
+    height: 200px; 
 }
 .author-img{
     height: 20%;
