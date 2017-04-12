@@ -1,0 +1,33 @@
+.post{
+    padding: 5px;
+    margin-bottom: 20px;
+
+        box-shadow: 2px 7px 16px 0px rgba(134, 134, 134, 0.45);
+        border-radius: 5px;
+}
+
+a.page-link {
+    border: none;
+    color: black;
+    border-radius: 50%;
+}
+li.page-item.active  a.page-link{
+    background: red;
+}
+.post-img{
+
+}
+.author-img{
+    height: 20%;
+}
+.author-area{
+  margin: 0 auto;
+  text-align: center;
+}
+.author-name{
+    color: red;
+    font-weight: 600;
+}
+nav{
+    margin: 0 auto;
+}

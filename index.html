@@ -3,6 +3,7 @@
 <head></head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous">
+<link rel="stylesheet" href="css/style.css">
 
 <body>
 
@@ -14,17 +15,23 @@
 
     <div class="container" id="app">
         <div class="row post" v-for="(post, index) in posts">
-            <div class="col-md-4"><img v-bind:src="post.image_url" class="post-img rounded"> </div>
-            <div class="col-md-4">{{post}}</div>
-            <div class="col-md-4"><img v-bind:src="getAuthor(post.author_id).avatar_url" class="author-img rounded-circle"> {{ getAuthor(post.author_id).name }}</div>
+            <div class="col-md-4 img-area"><img v-bind:src="post.image_url" class="post-img"> </div>
+            <div class="col-md-5 content-area">
+                <h4 class="post-title">{{post.title}}</h4>
+                <p class="post-body">{{post.body}}</p>
+            </div>
+            <div class="col-md-3 author-area"><img v-bind:src="getAuthor(post.author_id).avatar_url" class="author-img rounded-circle">
+                <p class="author-name">{{ getAuthor(post.author_id).name }}</p>
+
+            </div>
         </div>
     </div>
     <br>
-    <div class="container">
+    <div class="row">
         <nav aria-label="Page navigation ">
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
@@ -68,10 +75,13 @@
 
                 },
                 getAuthor: function (id) {
-                    data = this.authors.filter(function (item) {
+
+                    var data = this.authors.filter(function (item) {
                         return item.id == id;
                     });
-                    return data[0];
+
+
+                    return data[0] || {};
                 }
             }
         })
