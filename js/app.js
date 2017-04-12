@@ -1,44 +1,53 @@
-        var app = new Vue({
-            el: '#app',
-            data: {
-                posts: {},
-                authors: {}
-            },
-            mounted: function () {
-                // GET /Posts
-                this.$http.get('http://maqe.github.io/json/posts.json').then(response => {
+var app = new Vue({
+    el: '#app',
+    data: {
+        posts: {},
+        authors: {}
+    },
+    mounted: function () {
+        // GET /Posts
+        this.$http.get('http://maqe.github.io/json/posts.json').then(response => {
 
-                    // get body data
-                    this.posts = response.body;
+            // get body data
+            this.posts = response.body;
 
-                }, response => {
-                    // error callback
-                });
-                // GET /Authors
-                this.$http.get('http://maqe.github.io/json/authors.json').then(response => {
+        }, response => {
+            // error callback
+        });
+        // GET /Authors
+        this.$http.get('http://maqe.github.io/json/authors.json').then(response => {
 
-                    // get body data
-                    this.authors = response.body;
-
-
-                }, response => {
-                    // error callback
-                });
+            // get body data
+            this.authors = response.body;
 
 
-            },
-            methods: {
-                init: function () {
-
-                },
-                getAuthor: function (id) {
-
-                    var data = this.authors.filter(function (item) {
-                        return item.id == id;
-                    });
+        }, response => {
+            // error callback
+        });
 
 
-                    return data[0] || {};
-                }
-            }
-        })
+    },
+    methods: {
+        init: function () {
+
+        },
+        moment: function (date) {
+            return moment(date);
+        },
+        getAuthor: function (id) {
+
+            var data = this.authors.filter(function (item) {
+                return item.id == id;
+            });
+
+
+            return data[0] || {};
+        }
+    },
+    filters: {
+        moment: function (date) {
+            
+            return moment(date, "YYYYMMDD").fromNow();
+        }
+    }
+})

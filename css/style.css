@@ -1,11 +1,15 @@
 .post{
     padding: 5px;
     margin-bottom: 20px;
-
+    padding-top: 15px;
+    border: 1px solid rgba(169, 166, 166, 0.58);
+    min-height: 276px;
         box-shadow: 2px 7px 16px 0px rgba(134, 134, 134, 0.45);
         border-radius: 5px;
 }
-
+.posts .post:nth-child(even){
+    background-color:#f3f3f3;
+}
 a.page-link {
     border: none;
     color: black;
@@ -16,6 +20,10 @@ li.page-item.active  a.page-link{
 }
 .post-img{
     height: 200px; 
+}
+p.post-created {
+    font-style: italic;
+    color: grey;
 }
 .author-img{
     height: 20%;
@@ -30,4 +38,7 @@ li.page-item.active  a.page-link{
 }
 nav{
     margin: 0 auto;
+}
+.content-area {
+    border-right: 1px solid rgba(128, 128, 128, 0.32);
 }
