@@ -4,7 +4,7 @@
     padding-top: 15px;
     border: 1px solid rgba(169, 166, 166, 0.58);
     min-height: 276px;
-        box-shadow: 2px 7px 16px 0px rgba(134, 134, 134, 0.45);
+       
         border-radius: 5px;
 }
 .posts .post:nth-child(even){
